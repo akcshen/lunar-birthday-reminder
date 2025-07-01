@@ -1,0 +1,24 @@
+{
+  "name": "lunar-birthday-reminder",
+  "version": "1.0.0",
+  "description": "农历生日自动邮件提醒系统",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "prod": "NODE_ENV=production node index.js",
+    "deploy": "bash deploy.sh"
+  },
+  "dependencies": {
+    "lunar-javascript": "^1.6.7",
+    "nodemailer": "^6.9.7",
+    "node-cron": "^3.0.3",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "keywords": ["birthday", "reminder", "lunar", "email"],
+  "author": "",
+  "license": "MIT"
+} 

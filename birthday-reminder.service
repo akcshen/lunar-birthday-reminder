@@ -1,0 +1,16 @@
+[Unit]
+Description=Lunar Birthday Reminder System
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/path/to/birthday
+Environment=NODE_ENV=production
+Environment=TZ=Asia/Shanghai
+ExecStart=/usr/bin/node index.js
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target 
