@@ -70,7 +70,53 @@ EMAIL_PASS=your-authorization-code
 
 ## 使用方法
 
-### 交互式界面
+### 使用 PM2 启动（推荐）
+
+#### 快速启动
+```bash
+# 使用启动脚本
+./start-pm2.sh
+
+# 或使用管理脚本
+./pm2-manager.sh start
+```
+
+#### PM2 管理命令
+```bash
+# 查看帮助
+./pm2-manager.sh help
+
+# 查看状态
+./pm2-manager.sh status
+
+# 查看日志
+./pm2-manager.sh logs
+
+# 重启服务
+./pm2-manager.sh restart
+
+# 停止服务
+./pm2-manager.sh stop
+```
+
+#### 使用 npm 脚本
+```bash
+# 启动所有服务
+npm run pm2:start
+
+# 查看状态
+npm run pm2:status
+
+# 查看日志
+npm run pm2:logs
+
+# 重启服务
+npm run pm2:restart
+```
+
+### 直接启动
+
+#### 交互式界面
 
 启动交互式界面：
 
@@ -141,10 +187,16 @@ node index.js help
 ```
 birthday/
 ├── index.js                 # 主程序入口
+├── health.js               # 健康检查服务
+├── monitor.js              # 监控脚本
+├── ecosystem.config.js     # PM2 配置文件
+├── start-pm2.sh           # PM2 启动脚本
+├── pm2-manager.sh         # PM2 管理脚本
 ├── package.json            # 项目配置
 ├── birthdays.json          # 生日数据文件
 ├── env.example             # 环境变量示例
 ├── README.md               # 项目说明
+├── logs/                   # 日志目录
 ├── utils/
 │   ├── lunarConverter.js   # 农历转换工具
 │   └── emailSender.js      # 邮件发送工具
@@ -155,6 +207,8 @@ birthday/
 ## 技术栈
 
 - **Node.js**: 运行环境
+- **PM2**: 进程管理
+- **Express**: Web 服务（健康检查）
 - **lunar-javascript**: 农历日期转换
 - **nodemailer**: 邮件发送
 - **node-cron**: 定时任务
@@ -166,6 +220,45 @@ birthday/
 2. **邮件频率**: 系统会避免重复发送同一天的提醒
 3. **农历转换**: 支持1900-2100年的农历日期转换
 4. **数据持久化**: 生日数据保存在 `birthdays.json` 文件中
+5. **进程管理**: 推荐使用 PM2 进行进程管理，支持自动重启和日志管理
+6. **健康检查**: 提供 HTTP 健康检查接口，支持远程监控
+7. **监控告警**: 支持邮件告警，及时通知系统异常
+
+## 监控和健康检查
+
+### 健康检查接口
+
+系统提供 HTTP 健康检查接口：
+
+```bash
+# 健康检查
+curl http://localhost:3001/health
+
+# 状态信息
+curl http://localhost:3001/status
+```
+
+### 监控功能
+
+启动监控服务：
+
+```bash
+# 使用管理脚本
+./pm2-manager.sh start
+
+# 查看监控日志
+./pm2-manager.sh logs-monitor
+```
+
+### 远程监控
+
+配置环境变量启用邮件告警：
+
+```env
+# 监控配置
+MONITOR_EMAIL=your-monitor-email@example.com
+CHECK_INTERVAL=300000  # 5分钟检查一次
+```
 
 ## 故障排除
 
@@ -182,6 +275,17 @@ birthday/
 1. 确认系统时间正确
 2. 检查时区设置
 3. 使用 `node index.js check` 手动测试
+
+### PM2 相关问题
+1. 检查 PM2 是否安装：`pm2 --version`
+2. 查看服务状态：`pm2 status`
+3. 查看详细日志：`pm2 logs`
+4. 重启服务：`pm2 restart all`
+
+### 健康检查失败
+1. 确认健康检查服务已启动：`pm2 status`
+2. 检查端口是否被占用：`lsof -i :3001`
+3. 查看健康检查日志：`pm2 logs birthday-health`
 
 ## 许可证
 
