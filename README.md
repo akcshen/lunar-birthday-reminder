@@ -139,13 +139,13 @@ node index.js list
 
 #### 添加生日
 ```bash
-node index.js add <姓名> <农历月> <农历日> [邮箱]
+node index.js add <姓名> <农历月> <农历日>
 ```
 
 示例：
 ```bash
 node index.js add 妈妈 7 15
-node index.js add 爸爸 3 8 dad@example.com
+node index.js add 爸爸 3 8
 ```
 
 #### 删除生日

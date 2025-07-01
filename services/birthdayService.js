@@ -38,13 +38,12 @@ class BirthdayService {
   /**
    * 添加新的生日
    */
-  async addBirthday(name, lunarMonth, lunarDay, email) {
+  async addBirthday(name, lunarMonth, lunarDay) {
     const birthdays = await this.loadBirthdays();
     const newBirthday = {
       name,
       lunarMonth: parseInt(lunarMonth),
-      lunarDay: parseInt(lunarDay),
-      email: email || process.env.REMINDER_EMAIL
+      lunarDay: parseInt(lunarDay)
     };
     
     birthdays.push(newBirthday);

@@ -2,43 +2,41 @@
   {
     "name": "妈妈",
     "lunarMonth": 4,
-    "lunarDay": 30,
-    "email": "your-email@example.com"
+    "lunarDay": 30
   },
   {
     "name": "洛冰",
     "lunarMonth": 5,
-    "lunarDay": 24,
-    "email": "your-email@example.com"
+    "lunarDay": 24
+  },
+  {
+    "name": "ctest",
+    "lunarMonth": 6,
+    "lunarDay": 13
   },
   {
     "name": "丈母爹",
     "lunarMonth": 7,
-    "lunarDay": 20,
-    "email": "your-email@example.com"
+    "lunarDay": 20
   },
   {
     "name": "姐姐",
     "lunarMonth": 7,
-    "lunarDay": 29,
-    "email": "your-email@example.com"
+    "lunarDay": 29
   },
   {
     "name": "丈母娘",
     "lunarMonth": 8,
-    "lunarDay": 9,
-    "email": "your-email@example.com"
+    "lunarDay": 9
   },
   {
     "name": "爸爸",
     "lunarMonth": 9,
-    "lunarDay": 25,
-    "email": "your-email@example.com"
+    "lunarDay": 25
   },
   {
     "name": "娇娇",
     "lunarMonth": 12,
-    "lunarDay": 25,
-    "email": "your-email@example.com"
+    "lunarDay": 25
   }
-] 
+]

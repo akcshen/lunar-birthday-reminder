@@ -135,13 +135,11 @@ class BirthdayReminderApp {
     this.rl.question('请输入姓名: ', async (name) => {
       this.rl.question('请输入农历月份 (1-12): ', async (month) => {
         this.rl.question('请输入农历日期 (1-30): ', async (day) => {
-          this.rl.question('请输入邮箱地址 (可选，回车跳过): ', async (email) => {
-            try {
-              await this.birthdayService.addBirthday(name, month, day, email || null);
-            } catch (error) {
-              console.error('❌ 添加生日失败:', error.message);
-            }
-          });
+          try {
+            await this.birthdayService.addBirthday(name, month, day);
+          } catch (error) {
+            console.error('❌ 添加生日失败:', error.message);
+          }
         });
       });
     });
@@ -205,10 +203,10 @@ async function handleCommandLineArgs() {
       
     case 'add':
       if (args.length < 4) {
-        console.log('用法: node index.js add <姓名> <农历月> <农历日> [邮箱]');
+        console.log('用法: node index.js add <姓名> <农历月> <农历日>');
         process.exit(1);
       }
-      await birthdayService.addBirthday(args[1], args[2], args[3], args[4]);
+      await birthdayService.addBirthday(args[1], args[2], args[3]);
       break;
       
     case 'remove':
@@ -235,7 +233,7 @@ async function handleCommandLineArgs() {
 
 命令:
   list                   查看所有生日
-  add <姓名> <月> <日> [邮箱]  添加生日
+  add <姓名> <月> <日>    添加生日
   remove <姓名>          删除生日
   check                  立即检查生日提醒
   test                   测试邮件配置
